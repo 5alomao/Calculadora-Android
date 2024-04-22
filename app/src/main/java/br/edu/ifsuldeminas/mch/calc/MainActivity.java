@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     if (!expressao.equals("")) {
                         char ultimoChar = expressao.charAt(expressao.length() - 1);
-                        if(ultimoChar == '-' && (expressao.charAt(expressao.length() - 2) == '*' ||expressao.charAt(expressao.length() - 2) == '/')){
+                        if (ultimoChar == '-' && (expressao.charAt(expressao.length() - 2) == '*' || expressao.charAt(expressao.length() - 2) == '÷')) {
                             return;
                         }
                         if (haveOperator(ultimoChar)) {
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     if (!expressao.equals("")) {
                         char ultimoChar = expressao.charAt(expressao.length() - 1);
 
-                        if(ultimoChar == '-' && (expressao.charAt(expressao.length() - 2) == '*' ||expressao.charAt(expressao.length() - 2) == '/')){
+                        if (ultimoChar == '-' && (expressao.charAt(expressao.length() - 2) == '*' || expressao.charAt(expressao.length() - 2) == '÷')) {
                             return;
                         }
                         if (haveOperator(ultimoChar)) {
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     if (!expressao.equals("")) {
                         char ultimoChar = expressao.charAt(expressao.length() - 1);
-                        if(ultimoChar == '-' && (expressao.charAt(expressao.length() - 2) == '*' ||expressao.charAt(expressao.length() - 2) == '/')){
+                        if (ultimoChar == '-' && (expressao.charAt(expressao.length() - 2) == '*' || expressao.charAt(expressao.length() - 2) == '÷')) {
                             return;
                         }
 
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     if (!expressao.equals("")) {
                         char ultimoChar = expressao.charAt(expressao.length() - 1);
-                        if(!(ultimoChar == '-' && (expressao.charAt(expressao.length() - 2) == '*' ||expressao.charAt(expressao.length() - 2) == '/'))){
+                        if (!(ultimoChar == '-' && (expressao.charAt(expressao.length() - 2) == '*' || expressao.charAt(expressao.length() - 2) == '÷'))) {
                             if (haveOperator(ultimoChar)) {
                                 expressao = expressao.substring(0, expressao.length() - 1);
                             }
@@ -245,9 +245,12 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     expressao = expressao.replace("÷", "/");
                     char ultimoChar = expressao.charAt(expressao.length() - 1);
+                    char penultimoChar = expressao.charAt(expressao.length() - 2);
                     if (haveOperator(ultimoChar)) {
                         expressao = expressao.substring(0, expressao.length() - 1);
-
+                        if(haveOperator(penultimoChar)){
+                            expressao = expressao.substring(0, expressao.length() - 1);
+                        }
                     }
                     avaliadorExpressao = new ExpressionBuilder(expressao).build();
 
