@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     if (!expressao.equals("")) {
                         char ultimoChar = expressao.charAt(expressao.length() - 1);
+                        if(ultimoChar == '-' && (expressao.charAt(expressao.length() - 2) == '*' ||expressao.charAt(expressao.length() - 2) == '/')){
+                            return;
+                        }
                         if (haveOperator(ultimoChar)) {
                             expressao = expressao.substring(0, expressao.length() - 1);
                         }
@@ -79,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     if (!expressao.equals("")) {
                         char ultimoChar = expressao.charAt(expressao.length() - 1);
+
+                        if(ultimoChar == '-' && (expressao.charAt(expressao.length() - 2) == '*' ||expressao.charAt(expressao.length() - 2) == '/')){
+                            return;
+                        }
                         if (haveOperator(ultimoChar)) {
                             expressao = expressao.substring(0, expressao.length() - 1);
                         }
@@ -101,9 +108,14 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     if (!expressao.equals("")) {
                         char ultimoChar = expressao.charAt(expressao.length() - 1);
+                        if(ultimoChar == '-' && (expressao.charAt(expressao.length() - 2) == '*' ||expressao.charAt(expressao.length() - 2) == '/')){
+                            return;
+                        }
+
                         if (haveOperator(ultimoChar)) {
                             expressao = expressao.substring(0, expressao.length() - 1);
                         }
+
                         showScreen(btnDivisao);
                         haveDot = false;
                     } else {
@@ -127,8 +139,7 @@ public class MainActivity extends AppCompatActivity {
                         if (negativeNumber(ultimoChar)) {
                             showScreen(btnSubtracao);
                         } else {
-                            char penultimoChar = expressao.charAt(expressao.length() - 2);
-                            if (ultimoChar == '-' && (penultimoChar == '*' || penultimoChar == '/')) {
+                            if (ultimoChar == '-') {
                                 expressao = expressao.substring(0, expressao.length() - 1);
                             } else {
                                 if (haveOperator(ultimoChar)) {
@@ -155,11 +166,14 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     if (!expressao.equals("")) {
                         char ultimoChar = expressao.charAt(expressao.length() - 1);
-                        if (haveOperator(ultimoChar)) {
-                            expressao = expressao.substring(0, expressao.length() - 1);
+                        if(!(ultimoChar == '-' && (expressao.charAt(expressao.length() - 2) == '*' ||expressao.charAt(expressao.length() - 2) == '/'))){
+                            if (haveOperator(ultimoChar)) {
+                                expressao = expressao.substring(0, expressao.length() - 1);
+                            }
+                            showScreen(btnSoma);
+                            haveDot = false;
                         }
-                        showScreen(btnSoma);
-                        haveDot = false;
+
                     } else {
                         if (!textViewResultado.getText().equals("0")) {
                             pickResultText(btnSoma);
